@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "node app/server.js",
+    "build": "next build ./app"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2",
+    "next": "^4.2.1",
+    "next-routes": "^1.2.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
