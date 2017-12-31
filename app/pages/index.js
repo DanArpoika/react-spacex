@@ -11,7 +11,7 @@ export default class Home extends React.Component {
   }
   render () {
     const { data } = this.props;
-    const launches = data.slice(-10);
+    const launches = data.slice(0,9);
 
     return (
       <div>
@@ -19,7 +19,7 @@ export default class Home extends React.Component {
         <ul>
           {launches.map((launch) =>
             <li key={Math.random()}>
-              <Link route='launches' params={{launch: '10'}}>
+              <Link route='launches' params={{launch: launch.flight_number}}>
                 <a>Launch {launch.flight_number}</a>
               </Link>
             </li>
