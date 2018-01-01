@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from '../routes'
+import Container from '../components/Container'
 
 export default class Home extends React.Component {
   static async getInitialProps ({query}) {
@@ -15,16 +16,18 @@ export default class Home extends React.Component {
 
     return (
       <div>
-        <h1>index.js</h1>
-        <ul>
-          {launches.map((launch) =>
-            <li key={Math.random()}>
-              <Link route='launches' params={{launch: launch.flight_number}}>
-                <a>Launch {launch.flight_number}</a>
-              </Link>
-            </li>
-          )}
-        </ul>
+        <Container>
+          <h1>index.js</h1>
+          <ul>
+            {launches.map((launch) =>
+              <li key={Math.random()}>
+                <Link route='launches' params={{launch: launch.flight_number}}>
+                  <a>Launch {launch.flight_number}</a>
+                </Link>
+              </li>
+            )}
+          </ul>
+        </Container>
       </div>
     )
 
