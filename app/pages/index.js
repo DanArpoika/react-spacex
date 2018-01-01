@@ -17,19 +17,18 @@ export default class Home extends React.Component {
     return (
       <div>
         <Container>
-          <h1>index.js</h1>
-          <ul>
-            {launches.map((launch) =>
-              <li key={Math.random()}>
-                <Link route='launches' params={{launch: launch.flight_number}}>
-                  <a>Launch {launch.flight_number}</a>
+          <h1>SpaceX Launch Data</h1>
+          <div>
+            {data.map((launch) =>
+              <div key={Math.random()}>
+                <Link route='launch' params={{launch: launch.flight_number}}>
+                  <a>View Flight &rarr;</a>
                 </Link>
-              </li>
+              </div>
             )}
-          </ul>
+          </div>
         </Container>
       </div>
     )
-
   }
 }

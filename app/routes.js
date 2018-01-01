@@ -2,4 +2,4 @@ const routes = module.exports = require('next-routes')()
 
 routes
 .add('index', '/')
-.add('launches', '/launches/:launch' )
+.add('launch', '/launch/:launch' )
