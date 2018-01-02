@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "node app/server.js",
-    "build": "next build ./app"
+    "build": "next build ./app",
+    "start": "NODE_ENV=production node app/server.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -12,5 +13,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "styled-components": "^2.4.0"
-  }
+  },
+  "license": "UNLICENSED"
 }

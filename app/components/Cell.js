@@ -5,13 +5,17 @@ import LargeText from './LargeText'
 const Cell = styled.div `
   position: relative;
   grid-column: span ${props => props.cols};
-  padding: 68px 0 40px 24px;
+  padding: 64px 24px 40px 24px;
   overflow: hidden;
 
   &:first-of-type {
     padding-left: 0;
 
     ${CellTitle} { left: 0; }
+  }
+
+  &:last-of-type {
+    padding-right: 0;
   }
 
   ${props => props.border && css `

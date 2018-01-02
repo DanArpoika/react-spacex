@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Head from 'next/head'
 import styled from 'styled-components'
+import Layout from '../components/Layout'
 import Container from '../components/Container'
 import CellTitle from '../components/CellTitle'
 import formatDate from '../util/formatDate'
@@ -35,7 +36,7 @@ export default class Launch extends React.Component {
     const nullColor = (data) => data === null ? 'var(--inactive)' : 'inherit';
 
     return(
-      <main>
+      <Layout>
         <Head>
           <title>Flight {flightNumber} - {date} | SpaceX Launch Data</title>
         </Head>
@@ -44,29 +45,34 @@ export default class Launch extends React.Component {
           <CellSection>
             <CellGroup>
               <CellRow>
-                <Cell cols={2} style={{paddingTop: '40px'}}>
+                <Cell cols={2} style={{paddingTop: '40px', paddingBottom: '32px'}}>
                   <CellTitle>Flight</CellTitle>
                   <Flight>{flightNumber}</Flight>
                 </Cell>
 
                 <Cell cols={6} border="left">
-                  <CellTitle>Details</CellTitle>
+                  <CellTitle>Info</CellTitle>
                   <LargeText>{date}</LargeText>
                   <div style={{color: 'var(--gray)', fontSize: '0.875rem', marginTop: '0.5rem'}}>{data.launch_site.site_name_long}</div>
                 </Cell>
 
                 <Cell cols={4} border="left">
-                  <CellTitle>Result</CellTitle>
-                  <LargeText style={{color: `var(--${color})`}}>{result}</LargeText>
+                  <CellTitle>Rocket</CellTitle>
+                  <LargeText>{data.rocket.rocket_name}</LargeText>
                 </Cell>
               </CellRow>
 
               {data.details &&
                 <CellRow>
-                  <Cell cols={12} style={{paddingTop: '40px'}}>
+                  <Cell cols={8}>
                     <CellTitle>Details</CellTitle>
                     <p style={{lineHeight: 1.5, margin: '0.75em 0 0 0'}}>{data.details}</p>
                   </Cell>
+                  <Cell cols={4} border="left">
+                    <CellTitle>Result</CellTitle>
+                    <LargeText style={{color: `var(--${color})`}}>{result}</LargeText>
+                  </Cell>
+
                 </CellRow>
               }
             </CellGroup>
@@ -141,7 +147,7 @@ export default class Launch extends React.Component {
           </CellSection>
 
         </Container>
-      </main>
+      </Layout>
     )
   }
 }

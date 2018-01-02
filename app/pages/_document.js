@@ -54,6 +54,10 @@ injectGlobal `
   }
 
   img { max-width: 100%; }
-
   p { color: rgba(30,35,39, 0.85)}
+
+  a {
+    color: currentColor;
+    cursor: pointer !important;
+  }
 `;
