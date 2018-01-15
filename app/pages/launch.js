@@ -66,7 +66,7 @@ export default class Launch extends React.Component {
                 <CellRow>
                   <Cell cols={8}>
                     <CellTitle>Details</CellTitle>
-                    <p style={{lineHeight: 1.5, margin: '0.75em 0 0 0'}}>{data.details}</p>
+                    <p style={{lineHeight: 1.5, margin: '0.75em 0 0 0', fontSize: '0.875rem'}}>{data.details}</p>
                   </Cell>
                   <Cell cols={4} border="left">
                     <CellTitle>Result</CellTitle>
