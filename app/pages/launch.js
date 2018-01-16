@@ -11,6 +11,7 @@ import CellGroup from '../components/CellGroup'
 import Cell from '../components/Cell'
 import CellRow from '../components/CellRow'
 import LargeText from '../components/LargeText'
+import { Link } from '../routes'
 
 export default class Launch extends React.Component {
 
@@ -53,12 +54,21 @@ export default class Launch extends React.Component {
                 <Cell cols={6} border="left">
                   <CellTitle>Info</CellTitle>
                   <LargeText>{date}</LargeText>
-                  <div style={{color: 'var(--gray)', fontSize: '0.875rem', marginTop: '0.5rem'}}>{data.launch_site.site_name_long}</div>
+                  <div style={{color: 'var(--gray)', fontSize: '0.875rem', marginTop: '0.5rem'}}>
+                    <Link route="pad" params={{site: data.launch_site.site_id}} prefetch>
+                      <a>{data.launch_site.site_name_long}</a>
+                    </Link>
+                  </div>
                 </Cell>
 
                 <Cell cols={4} border="left">
                   <CellTitle>Rocket</CellTitle>
                   <LargeText>{data.rocket.rocket_name}</LargeText>
+                  <div style={{color: 'var(--gray)', fontSize: '0.875rem', marginTop: '0.5rem'}}>
+                    <Link route="rocket" params={{rocket: data.rocket.rocket_id}} prefetch>
+                      <a>View {data.rocket.rocket_name}</a>
+                    </Link>
+                  </div>
                 </Cell>
               </CellRow>
 

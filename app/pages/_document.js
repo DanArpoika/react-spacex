@@ -39,6 +39,7 @@ injectGlobal `
 
   body {
     margin: 0;
+    min-height: 100vh;
     font-family: "helvetica neue", helvetica, arial, sans-serif;
     color: var(--black);
   }
@@ -53,8 +54,20 @@ injectGlobal `
     font-weight: 400;
   }
 
+  h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
   img { max-width: 100%; }
-  p { color: rgba(30,35,39, 0.85)}
+
+  p {
+    color: rgba(30,35,39, 0.85);
+    line-height: 1.5rem;
+  }
 
   a {
     color: currentColor;
