@@ -21,6 +21,10 @@ export default class Rocket extends React.Component {
     const { data } = this.props;
     const status = data.active ? 'Active' : 'Inactive';
 
+    const firstFlight = data.first_flight !== 'TBD' ? formatDate(data.first_flight) : data.first_flight;
+    const success = data.first_flight !== 'TBD' ? data.success_rate_pct : 'N/A';
+    const nullColor = (data) => data === null || data === 'TBD' ? 'var(--inactive)' : 'inherit';
+
     return (
       <Layout>
         <Container>
@@ -41,22 +45,22 @@ export default class Rocket extends React.Component {
 
                 <Item cols={4}>
                   <h3>First Flight</h3>
-                  <div>{formatDate(data.first_flight)}</div>
+                  <div>{firstFlight}</div>
                 </Item>
 
                 <Item cols={4}>
                   <h3>Success Rate</h3>
-                  <div>{data.success_rate_pct}</div>
+                  <div style={{color: nullColor(data.first_flight)}}>{success}</div>
                 </Item>
 
                 <Item cols={4}>
                   <h3>Diameter</h3>
-                  <div>{data.diameter.feet}</div>
+                  <div>{data.diameter.feet} ft.</div>
                 </Item>
 
                 <Item cols={4}>
                   <h3>Height</h3>
-                  <div>{data.height.feet}</div>
+                  <div>{data.height.feet} ft.</div>
                 </Item>
 
                 <Item cols={4}>
