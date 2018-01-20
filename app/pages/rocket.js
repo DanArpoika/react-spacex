@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Error from 'next/error'
+import Error from './_error'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Container from '../components/Container'
@@ -13,7 +13,7 @@ import Item from '../components/Item'
 
 
 export default class Rocket extends React.Component {
-  static async getInitialProps ({res, query}) {
+  static async getInitialProps ({query}) {
     try {
       const call = await axios.get('https://api.spacexdata.com/v2/rockets/' + query.rocket);
       const data = call.data;

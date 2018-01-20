@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Head from 'next/head'
+import Error from './_error'
 import styled, {css} from 'styled-components'
 import Container from '../components/Container'
 import toTitleCase from '../util/toTitleCase'
@@ -10,17 +12,30 @@ import PageTitle from '../components/PageTitle'
 
 export default class Site extends React.Component {
   static async getInitialProps ({query}) {
-    const call = await axios.get('https://api.spacexdata.com/v2/launchpads/' + query.site);
-    const data = await call.data;
+    try {
+      const call = await axios.get('https://api.spacexdata.com/v2/launchpads/' + query.site);
+      const data = call.data;
+      const statusCode = call.status;
 
-    return {query, data: data}
+      return {query, data, statusCode}
+    } catch(err) {
+
+      return { query, statusCode: err.response.status }
+    }
   }
 
   render() {
-    const { data } = this.props;
+    const { data, statusCode } = this.props;
+
+    if (statusCode !== 200) {
+      return <Error statusCode={statusCode} />
+    }
 
     return (
       <Layout>
+        <Head>
+          <title>{data.full_name} | SpaceX Launch Data</title>
+        </Head>
         <Container>
           <PageTitle>{data.full_name}</PageTitle>
 

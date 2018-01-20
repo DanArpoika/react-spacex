@@ -5,6 +5,7 @@ import { Link } from '../routes'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
 import formatDate from '../util/formatDate'
+import precendingZero from '../util/precedingZero'
 
 export default class Home extends React.Component {
   static async getInitialProps ({query}) {
@@ -19,12 +20,13 @@ export default class Home extends React.Component {
 
     return (
       <Layout>
+        <title>Unofficial SpaceX | SpaceX Launch Data</title>
         <Container>
           <h1>SpaceX Launch Data</h1>
           <FlightList>
             {data.map((launch) =>
               <Flight key={Math.random()}>
-                <h2 style={{fontSize: '8rem', margin: 0, lineHeight: 1}}>{launch.flight_number}</h2>
+                <h2 style={{fontSize: '8rem', margin: 0, lineHeight: 1}}>{precendingZero(launch.flight_number)}</h2>
                 <FlightDate>{formatDate(launch.launch_date_local)}</FlightDate>
                 <Location>{launch.launch_site.site_name}</Location>
                 <Link route='launch' params={{launch: launch.flight_number}} prefetch>
@@ -40,24 +42,32 @@ export default class Home extends React.Component {
 }
 
 const FlightList = styled.div `
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0;
+  margin-bottom: 4rem;
   border-top: 4px solid var(--black);
   border-bottom: 4px solid var(--black);
   padding: 4rem 0;
   overflow: scroll;
+
+  > div:nth-child(4n+1):nth-last-child(-n+4),
+  > div:nth-child(4n+1):nth-last-child(-n+4) ~ div {
+    border-bottom: none;
+  }
 `
 
 const Flight = styled.div `
-  flex: 0 0 25%;
-  padding: 1.5rem;
+  grid-column: span 1;
+  padding: 3rem 1.5rem;
+  border-bottom: 2px solid var(--black);
 
-  &:first-of-type {
-    ${'' /* border-left: 2px solid var(--black); */}
+  &:nth-of-type(4n + 1) {
     padding-left: 0;
   }
 
-  &:not(:first-of-type) {
-    border-left: 2px solid var(--black);
+  &:not(:nth-of-type(4n+4)) {
+    border-right: 2px solid var(--black);
   }
 `
 
@@ -74,6 +84,7 @@ const Location = styled.div `
   font-family: 'Oswald';
   letter-spacing: 0.15em;
   color: var(--gray);
+  text-transform: uppercase;
 `
 
 const FlightLink = styled.span `

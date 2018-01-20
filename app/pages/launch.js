@@ -7,6 +7,7 @@ import Container from '../components/Container'
 import CellTitle from '../components/CellTitle'
 import formatDate from '../util/formatDate'
 import commaNumber from '../util/commaNumber'
+import precendingZero from '../util/precendingZero'
 import CellGroup from '../components/CellGroup'
 import Cell from '../components/Cell'
 import CellRow from '../components/CellRow'
@@ -22,11 +23,8 @@ export default class Launch extends React.Component {
     return {query, data: data[0]}
   }
 
-  precendingZero = (num) => num < 10 ? '0' + num.toString() : num;
-
   render () {
     const { data } = this.props;
-    const { precendingZero } = this;
     console.log(data)
 
     const flightNumber = precendingZero(data.flight_number)
