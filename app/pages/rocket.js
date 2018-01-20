@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Error from 'next/error'
+import Head from 'next/head'
 import styled from 'styled-components'
 import Container from '../components/Container'
 import Layout from '../components/Layout'
@@ -9,24 +11,37 @@ import PageTitle from '../components/PageTitle'
 import Grid from '../components/Grid'
 import Item from '../components/Item'
 
-export default class Rocket extends React.Component {
-  static async getInitialProps ({query}) {
-    const call = await axios.get('https://api.spacexdata.com/v2/rockets/' + query.rocket);
-    const data = await call.data;
 
-    return {query, data: data}
+export default class Rocket extends React.Component {
+  static async getInitialProps ({res, query}) {
+    try {
+      const call = await axios.get('https://api.spacexdata.com/v2/rockets/' + query.rocket);
+      const data = call.data;
+      const statusCode = call.status;
+
+      return {query, data, statusCode}
+    } catch(err) {
+
+      return { query, statusCode: err.response.status }
+    }
   }
 
   render() {
-    const { data } = this.props;
-    const status = data.active ? 'Active' : 'Inactive';
+    const { data, statusCode } = this.props;
 
+    if (statusCode !== 200) {
+      return <Error statusCode={statusCode} />
+    }
+
+    const status = data.active ? 'Active' : 'Inactive';
     const firstFlight = data.first_flight !== 'TBD' ? formatDate(data.first_flight) : data.first_flight;
     const success = data.first_flight !== 'TBD' ? data.success_rate_pct : 'N/A';
-    const nullColor = (data) => data === null || data === 'TBD' ? 'var(--inactive)' : 'inherit';
 
     return (
       <Layout>
+        <Head>
+          <title>{data.name} Rocket | SpaceX Launch Data</title>
+        </Head>
         <Container>
           <PageTitle>{data.name}</PageTitle>
 
@@ -50,7 +65,7 @@ export default class Rocket extends React.Component {
 
                 <Item cols={4}>
                   <h3>Success Rate</h3>
-                  <div style={{color: nullColor(data.first_flight)}}>{success}</div>
+                  <div>{success}</div>
                 </Item>
 
                 <Item cols={4}>
