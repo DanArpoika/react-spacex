@@ -5,7 +5,7 @@ import { Link } from '../routes'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
 import formatDate from '../util/formatDate'
-import precendingZero from '../util/precedingZero'
+import precedingZero from '../util/precedingZero'
 
 export default class Home extends React.Component {
   static async getInitialProps ({query}) {
@@ -26,7 +26,7 @@ export default class Home extends React.Component {
           <FlightList>
             {data.map((launch) =>
               <Flight key={Math.random()}>
-                <h2 style={{fontSize: '8rem', margin: 0, lineHeight: 1}}>{precendingZero(launch.flight_number)}</h2>
+                <h2 style={{fontSize: '8rem', margin: 0, lineHeight: 1}}>{precedingZero(launch.flight_number)}</h2>
                 <FlightDate>{formatDate(launch.launch_date_local)}</FlightDate>
                 <Location>{launch.launch_site.site_name}</Location>
                 <Link route='launch' params={{launch: launch.flight_number}} prefetch>

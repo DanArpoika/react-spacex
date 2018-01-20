@@ -7,7 +7,7 @@ import Container from '../components/Container'
 import CellTitle from '../components/CellTitle'
 import formatDate from '../util/formatDate'
 import commaNumber from '../util/commaNumber'
-import precendingZero from '../util/precendingZero'
+import precedingZero from '../util/precedingZero'
 import CellGroup from '../components/CellGroup'
 import Cell from '../components/Cell'
 import CellRow from '../components/CellRow'
@@ -27,7 +27,7 @@ export default class Launch extends React.Component {
     const { data } = this.props;
     console.log(data)
 
-    const flightNumber = precendingZero(data.flight_number)
+    const flightNumber = precedingZero(data.flight_number)
     const date = formatDate(data.launch_date_local);
     const result = data.launch_success === true ? 'Success' : 'Failure';
     const color = data.launch_success === true ? 'green' : 'red';
