@@ -16,7 +16,7 @@ export default class Error extends React.Component {
         <ErrPage>
           <Container>
             <PageTitle style={{fontSize: '8rem', margin: '0 auto 2rem auto', lineHeight: 1}}>{this.props.statusCode}</PageTitle>
-            <h3>
+            <h3 style={{marginBottom: '68px'}}>
               Houston, we have a problem
             </h3>
           </Container>

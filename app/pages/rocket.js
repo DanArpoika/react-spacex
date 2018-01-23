@@ -65,7 +65,7 @@ export default class Rocket extends React.Component {
 
                 <Item cols={4}>
                   <h3>Success Rate</h3>
-                  <div>{success}</div>
+                  <div>{success}%</div>
                 </Item>
 
                 <Item cols={4}>

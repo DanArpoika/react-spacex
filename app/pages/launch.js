@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Head from 'next/head'
+import Error from './_error'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
@@ -17,22 +18,36 @@ import { Link } from '../routes'
 export default class Launch extends React.Component {
 
   static async getInitialProps ({query}) {
-    const call = await axios.get('https://api.spacexdata.com/v2/launches?flight_number=' + query.launch);
-    const data = await call.data;
+    try {
+      const call = await axios.get('https://api.spacexdata.com/v2/launches?flight_number=' + query.launch);
+      const data = call.data;
+      const statusCode = call.status;
 
-    return {query, data: data[0]}
+      return {query, data: data, statusCode}
+    } catch(err) {
+
+      return { query, statusCode: err.response.status }
+    }
   }
 
-  render () {
-    const { data } = this.props;
-    console.log(data)
+  checkNull = (data) => data === null ? 'N/A' : data;
+  nullColor = (data) => data === null ? 'var(--inactive)' : 'inherit';
 
+  render () {
+    let { data, statusCode } = this.props;
+
+    if (statusCode !== 200 || data.length === 0) {
+      statusCode = data.length === 0 ? 404 : statusCode;
+      return <Error statusCode={statusCode} />
+    }
+
+    const { checkNull, nullColor } = this;
+
+    data = data[0];
     const flightNumber = precedingZero(data.flight_number)
     const date = formatDate(data.launch_date_local);
     const result = data.launch_success === true ? 'Success' : 'Failure';
     const color = data.launch_success === true ? 'green' : 'red';
-    const checkNull = (data) => data === null ? 'N/A' : data;
-    const nullColor = (data) => data === null ? 'var(--inactive)' : 'inherit';
 
     return(
       <Layout>
