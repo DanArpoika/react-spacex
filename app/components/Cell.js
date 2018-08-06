@@ -21,7 +21,7 @@ const Cell = styled.div`
   }
 
   ${props => props.border && css`
-    border-${props => props.border}: 2px solid var(--black);
+    border-${props => props.border}: 2px solid var(--black); /* stylelint-disable-line property-no-unknown */
   `}
 
   ${props => props.rows && css`

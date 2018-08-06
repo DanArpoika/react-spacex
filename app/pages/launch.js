@@ -192,7 +192,7 @@ const CellSection = styled.section`
 const Flight = styled.h1`
   margin: 0;
   font-size: 8rem;
-  font-family: 'Oswald';
+  font-family: var(--font-condensed);
   line-height: 1;
   letter-spacing: -0.025em;
 `;
