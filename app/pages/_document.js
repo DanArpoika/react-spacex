@@ -1,17 +1,20 @@
-import Document, { Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheet, injectGlobal } from 'styled-components'
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet, injectGlobal } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInitialProps ({ renderPage }) {
-    const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
-    const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
+
+  static getInitialProps({ renderPage }) {
+    const sheet = new ServerStyleSheet();
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
+    const styleTags = sheet.getStyleElement();
+
+    return { ...page, styleTags };
   }
 
-  render () {
+  render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <title>SpaceX Launch Data</title>
           <link href="https://fonts.googleapis.com/css?family=Oswald:300,400" rel="stylesheet" />
@@ -22,11 +25,12 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }
 
-injectGlobal `
+/* eslint-disable no-unused-expressions */
+injectGlobal`
   :root {
     --black: #1e2327;
     --gray: #9b9c9d;
