@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 
@@ -14,7 +13,7 @@ export default class Error extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <main>
         <ErrPage>
           <Container>
             <PageTitle style={{ fontSize: '8rem', margin: '0 auto 2rem auto', lineHeight: 1 }}>
@@ -23,7 +22,7 @@ export default class Error extends React.Component {
             <h3 style={{ marginBottom: '68px' }}>Houston, we have a problem</h3>
           </Container>
         </ErrPage>
-      </Layout>
+      </main>
     );
   }
 }
