@@ -37,6 +37,7 @@ injectGlobal`
     --red: #ed0f0f;
     --green: #13a941;
     --inactive: #e2e2e2;
+    --font-condensed: "oswald", helvetica, arial, sans-serif;
   }
 
   * { box-sizing: border-box; }

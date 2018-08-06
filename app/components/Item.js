@@ -20,7 +20,7 @@ const Item = styled.div`
   ${props =>
     props.start &&
     css`
-    grid-column ${`${props.start} / span ${props.cols}`};
+    grid-column: ${`${props.start} / span ${props.cols}`};
   `} ${Grid} {
     border-top: 0;
     padding-top: 0;

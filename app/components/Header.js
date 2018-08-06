@@ -24,7 +24,7 @@ const HeaderWrap = styled.header`
 const Title = styled.span`
   font-size: 0.75rem;
   line-height: 1rem;
-  font-family: 'Oswald';
+  font-family: var(--font-condensed);
   letter-spacing: 0.15em;
   color: var(--gray);
   text-transform: uppercase;

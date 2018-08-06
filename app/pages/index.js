@@ -28,13 +28,18 @@ export default class Home extends React.Component {
           <FlightList>
             {data.map(launch => (
               <Flight key={Math.random()}>
-                <h2 style={{ fontSize: '8rem', margin: 0, lineHeight: 1 }}>{precedingZero(launch.flight_number)}</h2>
+                <h2 style={{ fontSize: '8rem', margin: 0, lineHeight: 1 }}>
+                  {precedingZero(launch.flight_number)}
+                </h2>
                 <FlightDate>{formatDate(launch.launch_date_local)}</FlightDate>
                 <Location>{launch.launch_site.site_name}</Location>
                 <Link route="launch" params={{ launch: launch.flight_number }} prefetch>
-                  <a><FlightLink>View Flight</FlightLink></a>
+                  <a>
+                    <FlightLink>View Flight</FlightLink>
+                  </a>
                 </Link>
-              </Flight>))}
+              </Flight>
+            ))}
           </FlightList>
         </Container>
       </main>
@@ -52,8 +57,8 @@ const FlightList = styled.div`
   padding: 4rem 0;
   overflow: scroll;
 
-  > div:nth-child(4n+1):nth-last-child(-n+4),
-  > div:nth-child(4n+1):nth-last-child(-n+4) ~ div {
+  > div:nth-child(4n + 1):nth-last-child(-n + 4),
+  > div:nth-child(4n + 1):nth-last-child(-n + 4) ~ div {
     border-bottom: none;
   }
 `;
@@ -67,7 +72,7 @@ const Flight = styled.div`
     padding-left: 0;
   }
 
-  &:not(:nth-of-type(4n+4)) {
+  &:not(:nth-of-type(4n + 4)) {
     border-right: 2px solid var(--black);
   }
 `;
@@ -82,7 +87,7 @@ const Location = styled.div`
   margin-top: 0.5rem;
   margin-bottom: 2rem;
   font-size: 0.75rem;
-  font-family: 'Oswald';
+  font-family: var(--font-condensed);
   letter-spacing: 0.15em;
   color: var(--gray);
   text-transform: uppercase;
