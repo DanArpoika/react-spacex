@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
-const CellRow = styled.div `
+const CellRow = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 0;
@@ -10,10 +10,10 @@ const CellRow = styled.div `
     border-bottom: 0;
   }
 
-  ${props => props.templateRows && css `
+  ${props => props.templateRows && css`
     grid-template-rows: repeat(2, 1fr);
-    ${'' /* grid-row-gap: 0; */}
+    ${''}
   `}
-`
+`;
 
-export default CellRow
+export default CellRow;

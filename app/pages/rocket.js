@@ -1,28 +1,27 @@
-import React from 'react'
-import axios from 'axios'
-import Error from './_error'
-import Head from 'next/head'
+import React from 'react';
+import axios from 'axios';
+import Head from 'next/head';
+import Error from './_error';
 // import styled from 'styled-components'
-import Container from '../components/Container'
-import Layout from '../components/Layout'
-import formatDate from '../util/formatDate'
-import commaNumber from '../util/commaNumber'
-import PageTitle from '../components/PageTitle'
-import Grid from '../components/Grid'
-import Item from '../components/Item'
-
+import Container from '../components/Container';
+// import Layout from '../components/Layout';
+import formatDate from '../util/formatDate';
+import commaNumber from '../util/commaNumber';
+import PageTitle from '../components/PageTitle';
+import Grid from '../components/Grid';
+import Item from '../components/Item';
 
 export default class Rocket extends React.Component {
-  static async getInitialProps ({query}) {
+
+  static async getInitialProps({ query }) {
     try {
-      const call = await axios.get('https://api.spacexdata.com/v2/rockets/' + query.rocket);
-      const data = call.data;
+      const call = await axios.get(`https://api.spacexdata.com/v2/rockets/${query.rocket}`);
+      const { data } = call;
       const statusCode = call.status;
 
-      return {query, data, statusCode}
-    } catch(err) {
-
-      return { query, statusCode: err.response.status }
+      return { query, data, statusCode };
+    } catch (err) {
+      return { query, statusCode: err.response.status };
     }
   }
 
@@ -30,11 +29,12 @@ export default class Rocket extends React.Component {
     const { data, statusCode } = this.props;
 
     if (statusCode !== 200) {
-      return <Error statusCode={statusCode} />
+      return <Error statusCode={statusCode} />;
     }
 
     const status = data.active ? 'Active' : 'Inactive';
-    const firstFlight = data.first_flight !== 'TBD' ? formatDate(data.first_flight) : data.first_flight;
+    const firstFlight =
+      data.first_flight !== 'TBD' ? formatDate(data.first_flight) : data.first_flight;
     const success = data.first_flight !== 'TBD' ? data.success_rate_pct : 'N/A';
 
     return (
@@ -84,10 +84,9 @@ export default class Rocket extends React.Component {
                 </Item>
               </Grid>
             </Item>
-
           </Grid>
         </Container>
       </main>
-    )
+    );
   }
 }

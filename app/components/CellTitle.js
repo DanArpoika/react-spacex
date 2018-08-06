@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-const CellTitle = styled.h3 `
+const CellTitle = styled.h3`
   position:absolute;
   top: 1rem;
   left: 1.5rem;
@@ -9,6 +9,6 @@ const CellTitle = styled.h3 `
   letter-spacing: 0.15em;
   color: var(--gray);
   text-transform: uppercase;
-`
+`;
 
-export default CellTitle
+export default CellTitle;

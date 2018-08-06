@@ -1,26 +1,27 @@
-import React from 'react'
-import axios from 'axios'
-import Head from 'next/head'
-import Error from './_error'
+import React from 'react';
+import axios from 'axios';
+import Head from 'next/head';
+import Error from './_error';
 // import styled, {css} from 'styled-components'
-import Container from '../components/Container'
-import toTitleCase from '../util/toTitleCase'
-import Layout from '../components/Layout'
-import Grid from '../components/Grid'
-import Item from '../components/Item'
-import PageTitle from '../components/PageTitle'
+import Container from '../components/Container';
+import toTitleCase from '../util/toTitleCase';
+// import Layout from '../components/Layout';
+import Grid from '../components/Grid';
+import Item from '../components/Item';
+import PageTitle from '../components/PageTitle';
 
 export default class Site extends React.Component {
-  static async getInitialProps ({query}) {
+
+  static async getInitialProps({ query }) {
     try {
-      const call = await axios.get('https://api.spacexdata.com/v2/launchpads/' + query.site);
-      const data = call.data;
+      const call = await axios.get(`https://api.spacexdata.com/v2/launchpads/${query.site}`);
+      const { data } = call;
       const statusCode = call.status;
 
-      return {query, data, statusCode}
-    } catch(err) {
+      return { query, data, statusCode };
+    } catch (err) {
 
-      return { query, statusCode: err.response.status }
+      return { query, statusCode: err.response.status };
     }
   }
 
@@ -28,7 +29,7 @@ export default class Site extends React.Component {
     const { data, statusCode } = this.props;
 
     if (statusCode !== 200) {
-      return <Error statusCode={statusCode} />
+      return <Error statusCode={statusCode} />;
     }
 
     return (
@@ -73,6 +74,6 @@ export default class Site extends React.Component {
 
         </Container>
       </main>
-    )
+    );
   }
 }

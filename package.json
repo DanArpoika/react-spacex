@@ -2,7 +2,9 @@
   "scripts": {
     "dev": "node app/server.js",
     "build": "next build ./app",
-    "start": "NODE_ENV=production node app/server.js"
+    "start": "NODE_ENV=production node app/server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -14,5 +16,9 @@
     "react-dom": "^16.2.0",
     "styled-components": "^2.4.0"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@ueno/eslint-config": "^1.2.8",
+    "eslint": "4.9.0"
+  }
 }

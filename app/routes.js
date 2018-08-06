@@ -1,7 +1,8 @@
-const routes = module.exports = require('next-routes')()
+/* eslint-disable no-multi-assign */
+const routes = module.exports = require('next-routes')();
 
 routes
   .add('index', '/')
-  .add('launch', '/launch/:launch' )
-  .add('pad', '/launchpad/:site' )
-  .add('rocket', '/rockets/:rocket')
+  .add('launch', '/launch/:launch')
+  .add('pad', '/launchpad/:site')
+  .add('rocket', '/rockets/:rocket');
