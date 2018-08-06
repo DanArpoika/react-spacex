@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Error from './_error'
 import Head from 'next/head'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import Container from '../components/Container'
 import Layout from '../components/Layout'
 import formatDate from '../util/formatDate'
@@ -38,7 +38,7 @@ export default class Rocket extends React.Component {
     const success = data.first_flight !== 'TBD' ? data.success_rate_pct : 'N/A';
 
     return (
-      <Layout>
+      <main>
         <Head>
           <title>{data.name} Rocket | SpaceX Launch Data</title>
         </Head>
@@ -87,7 +87,7 @@ export default class Rocket extends React.Component {
 
           </Grid>
         </Container>
-      </Layout>
+      </main>
     )
   }
 }

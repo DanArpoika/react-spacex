@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Link } from '../routes'
-import Layout from '../components/Layout'
+
 import Container from '../components/Container'
 import formatDate from '../util/formatDate'
 import precedingZero from '../util/precedingZero'
@@ -16,11 +16,11 @@ export default class Home extends React.Component {
   }
   render () {
     const { data } = this.props;
-    console.log(data);
+    // console.log(data);
 
     return (
-      <Layout>
-        <title>Unofficial SpaceX | SpaceX Launch Data</title>
+      <main>
+        {/* <title>Unofficial SpaceX | SpaceX Launch Data</title> */}
         <Container>
           <h1>SpaceX Launch Data</h1>
           <FlightList>
@@ -36,7 +36,7 @@ export default class Home extends React.Component {
             )}
           </FlightList>
         </Container>
-      </Layout>
+      </main>
     )
   }
 }

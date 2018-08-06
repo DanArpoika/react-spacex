@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Head from 'next/head'
 import Error from './_error'
-import styled, {css} from 'styled-components'
+// import styled, {css} from 'styled-components'
 import Container from '../components/Container'
 import toTitleCase from '../util/toTitleCase'
 import Layout from '../components/Layout'
@@ -32,7 +32,7 @@ export default class Site extends React.Component {
     }
 
     return (
-      <Layout>
+      <main>
         <Head>
           <title>{data.full_name} | SpaceX Launch Data</title>
         </Head>
@@ -72,7 +72,7 @@ export default class Site extends React.Component {
           </Grid>
 
         </Container>
-      </Layout>
+      </main>
     )
   }
 }

@@ -3,7 +3,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import Error from './_error'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
 import Container from '../components/Container'
 import CellTitle from '../components/CellTitle'
 import formatDate from '../util/formatDate'
@@ -50,7 +49,7 @@ export default class Launch extends React.Component {
     const color = data.launch_success === true ? 'green' : 'red';
 
     return(
-      <Layout>
+      <main>
         <Head>
           <title>Flight {flightNumber} - {date} | SpaceX Launch Data</title>
         </Head>
@@ -170,7 +169,7 @@ export default class Launch extends React.Component {
           </CellSection>
 
         </Container>
-      </Layout>
+      </main>
     )
   }
 }
