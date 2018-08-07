@@ -153,8 +153,12 @@ export default class Launch extends React.Component {
                     </LargeText>
                   </Cell>
                   <Cell cols={4} border="left" small>
-                    <CellTitle>Mass (lbs)</CellTitle>
-                    <LargeText>{commaNumber(load.payload_mass_lbs)}</LargeText>
+                    <CellTitle>Mass ({this.props.units === 'us' ? 'lbs' : 'kg'})</CellTitle>
+                    <LargeText>
+                      {this.props.units === 'us'
+                        ? commaNumber(load.payload_mass_lbs)
+                        : commaNumber(load.payload_mass_kg)}
+                    </LargeText>
                   </Cell>
                   <Cell cols={4} border="left" small>
                     <CellTitle>Orbit</CellTitle>
