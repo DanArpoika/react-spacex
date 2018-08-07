@@ -26,10 +26,10 @@ export default Layout;
 
 const HeaderWrap = styled.header`
   padding: 1.5rem 0;
-  ${'' /* position: sticky;
+  position: sticky;
   top: 0;
   background-color: #ffffff;
-  z-index: 99; */}
+  z-index: 99;
 `;
 
 const Title = styled.span`
@@ -45,4 +45,5 @@ const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
