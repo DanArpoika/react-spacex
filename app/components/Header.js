@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Container from './Container';
+import UnitToggle from './UnitToggle';
 
 const Header = () => (
   <HeaderWrap>
@@ -9,6 +10,7 @@ const Header = () => (
       <Link href="/" prefetch>
         <a style={{ textDecoration: 'none' }}><Title>Unofficial SpaceX</Title></a>
       </Link>
+      <UnitToggle />
     </Container>
   </HeaderWrap>
 );

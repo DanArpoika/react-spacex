@@ -14,13 +14,41 @@ export default class MyApp extends App {
     return { pageProps };
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      units: 'us',
+    };
+  }
+
+  componentDidMount() {
+    if (window.localStorage.getItem('units')) {
+      this.setState({ // eslint-disable-line react/no-did-mount-set-state
+        units: window.localStorage.getItem('units'),
+      });
+    }
+  }
+
+  toggleUnit = (e) => {
+    const val = e.target.checked;
+    const unit = val === true ? 'metric' : 'us';
+
+    this.setState({
+      units: unit,
+    });
+
+    window.localStorage.setItem('units', unit);
+  };
+
   render() {
     const { Component, pageProps } = this.props;
+    const { units } = this.state;
 
     return (
       <Container>
-        <Layout>
-          <Component {...pageProps} />
+        <Layout units={units} toggleUnit={this.toggleUnit}>
+          <Component {...pageProps} units={units} />
         </Layout>
       </Container>
     );

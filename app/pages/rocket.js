@@ -26,7 +26,7 @@ export default class Rocket extends React.Component {
   }
 
   render() {
-    const { data, statusCode } = this.props;
+    const { data, statusCode, units } = this.props;
 
     if (statusCode !== 200) {
       return <Error statusCode={statusCode} />;
@@ -70,12 +70,20 @@ export default class Rocket extends React.Component {
 
                 <Item cols={4}>
                   <h3>Diameter</h3>
-                  <div>{data.diameter.feet} ft.</div>
+                  <div>
+                    {units === 'us'
+                      ? `${data.diameter.feet} ft.`
+                      : `${data.diameter.meters} meters`}
+                  </div>
                 </Item>
 
                 <Item cols={4}>
                   <h3>Height</h3>
-                  <div>{data.height.feet} ft.</div>
+                  <div>
+                    {units === 'us'
+                      ? `${data.height.feet} ft.`
+                      : `${data.height.meters} meters`}
+                  </div>
                 </Item>
 
                 <Item cols={4}>
