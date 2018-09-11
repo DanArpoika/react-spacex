@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:css": "stylelint .",
-    "export": "yarn build ./app && next export ./app"
+    "export": "next export ./app"
   },
   "dependencies": {
     "axios": "^0.17.1",
