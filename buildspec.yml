@@ -12,13 +12,13 @@ phases:
   post_build:
     commands:
       # copy the contents of ./app/out to S3
-      - aws s3 cp --recursive --acl public-read ./app/out s3://${DeployBucket}/       
+      - aws s3 cp --recursive --acl public-read /app/out s3://${DeployBucket}/       
       # set the cache-control headers for index.html to prevent      
       - >
         aws s3 cp --acl public-read 
         --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
-        ./app/out/index.html s3://${DeployBucket}/      
+        /app/out/index.html s3://${DeployBucket}/      
 artifacts:
   files:
     - '**/*'
-  base-directory: app/out
+  base-directory: /
